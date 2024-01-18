@@ -36,28 +36,6 @@ This help page provides information on custom PowerShell commands used in your p
     - Search for a specific custom command.
     - Aliases: `scc`
 
-#### Conda Environment Management:
-
-- **CondaCreateEnv**
-    - Usage: `CondaCreateEnv || cce [envName] [pythonVersion]`
-    - Create a new Conda environment with an optional specific Python version.
-    - Aliases: `cce`
-
-- **CondaUpdateEnv**
-    - Usage: `CondaUpdateEnv || cue [envName]`
-    - Update all packages in a specified Conda environment or the base environment.
-    - Aliases: `cue`
-
-- **CondaRemoveEnv**
-    - Usage: `CondaRemoveEnv || cre [envName]`
-    - Delete a specified Conda environment.
-    - Aliases: `cre`
-
-- **CondaListShortcuts**
-    - Usage: `CondaListShortcuts || debloater [pattern]`
-    - List Conda shortcuts or search for a specific pattern.
-    - Aliases: `ccon`
-
 #### Network and System Utilities:
 
 - **ListConnectedIPs**
@@ -94,9 +72,6 @@ This help page provides information on custom PowerShell commands used in your p
 
 #### General Aliases:
 
-- `conda-update`: Update the base Conda installation.
-- `aenv`: Activate a Conda environment.
-- `lenv`: List all Conda environments.
 - `..`, `...`, `....`: Move up directories.
 - `~`: Change to the home directory.
 - `ll`, `la`, `l`: List files in various formats.
@@ -108,7 +83,6 @@ This help page provides information on custom PowerShell commands used in your p
 - `ep`: Quick access to edit profile commands.
 - `lsa`: List all aliases available in the session.
 - `checkssh`: Check all available SSH keys.
-- `cls`: List Conda shortcuts.
 - `sv`, `gv`, `ni`, `ls`, `ps`, `kill`, `nano`, `touch`: Various standard PowerShell functions.
 
 ---

@@ -299,6 +299,20 @@ function gitCheckout {
     git checko
 }
 
+function loadScript {
+    param (
+        [string]$fileName
+    )
+
+    $scriptPath = "C:\Users\$env:USERNAME\Documents\PowerShell\$fileName"
+
+    # Create the new profile
+    New-Item -Path $scriptPath -ItemType File -Force
+
+    # Load the new profile
+    . $newProfilePath
+}
+
 # Custom
 Set-Alias ss	    SniffSearch # File search in folder
 Set-Alias c         'Clear-Host' # Quick clear the terminal screen
@@ -328,10 +342,7 @@ Set-Alias cre       CondaRemoveEnv # Delete a Conda environment
 Set-Alias l         'Get-ChildItem -Force -Name | Format-Wide -Column 1' # List files in a format suitable for the terminal
 Set-Alias ll        'Get-ChildItem -Force | Format-Table -AutoSize' # List all files in long format, including hidden files
 Set-Alias la        'Get-ChildItem -Force -Name' # List all files, including hidden files, but exclude '.' and '..'
-Set-Alias ls        'Get-ChildItem' # List items in a directory
-Set-Alias ps        'Get-Process' # Get a list of all running processes
 Set-Alias lsa       'Get-Alias' # List all aliases available in the session
-Set-Alias kill      'Stop-Process' # Kill a process
 Set-Alias getv      'Get-Variable' # Get a variable
 Set-Alias setv      'Set-Variable' # Set a variable
 Set-Alias newi      'New-Item' # Create a new item
@@ -342,7 +353,6 @@ Set-Alias psadmin   LaunchAdminPS # Open PowerShell as Administrator in Current 
 Set-Alias cdd       CreateDirectoryIfNotExists # Automatic Directory Creation with cd with Confirmation
 Set-Alias checkssh  'for key in ~/.ssh/id_*; do ssh-keygen -l -f "${key}"; done | uniq' # Check all available SSH keys
 # Git
-Set-Alias ccgit     
 Set-Alias gs        gitStatus
 Set-Alias ga        gitAdd
 Set-Alias gaa       gitAddAll
@@ -360,10 +370,11 @@ Set-Alias gcmaster  gitCheckoutMaster
 Set-Alias gcherry   gitCherryPickAbort
 
 # DEVELOPER
-Set-Alias dev       UpdateDevProfile # Load the Developer profile
+Set-Alias dev       LoadDevProfile # Load the Developer profile
+Set-Alias loadSc loadScript # Load a script
 
 # Set the default location to the home directory
-Set-Location $HOME
+#Set-Location $HOME
 
 Write-Host "PowerTools Profile loaded.`n"
   
