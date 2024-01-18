@@ -1,0 +1,23 @@
+### Git Commands:
+
+Alias     Command
+-------   -------------------
+g         git
+ga        git add
+gaa       git add --all
+ccgit     gitListShortcuts
+gs        gitStatus
+ga        gitAdd
+gaa       gitAddAll
+gb        gitBranch
+gba       gitBranchAll
+gbd       gitBranchDelete
+gcom      gitCommit
+gcoma     gitCommitAll
+gcb       gitCheckoutBranch
+gcl       gitClone
+gco       gitCheckout
+gcl       gitConfigList
+gclean    gitClean
+gcmaster  gitCheckoutMaster
+gcherry   gitCherryPickAbort

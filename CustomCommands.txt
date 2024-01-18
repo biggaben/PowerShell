@@ -1,0 +1,120 @@
+```
+### Custom PowerShell - DHz
+
+#### Usage: Command [Arguments] [Options...]
+
+This help page provides information on custom PowerShell commands used in your program, organized into intuitive categories for easy searching and reference.
+
+---
+
+#### File and Directory traversal search utility:
+
+- **SniffSearch**
+    - Usage: `SniffSearch || ss [firstParam] [secondParam] [Options...]`
+    - Search directories files in the current location.
+    - Aliases: `ss`
+      - Options:
+        -firstParam - [String, int, -Null], sets search depth. -Null -eq current folder.
+        -secondParam - [String, int, -Null], String sets search filter. -Null -eq no filter.
+        -SkipFiles - Skip files in search result.
+        -SkipFolders - Skip folders in search result.
+
+- **CreateDirectoryIfNotExists**
+    - Usage: `CreateDirectoryIfNotExists || cdd [path]`
+    - Create a directory if it does not exist, with confirmation.
+    - Aliases: `cdd`
+
+#### Custom Command Utilities:
+
+- **ShowCommandList**
+    - Usage: `ShowCommandList || lcc [pattern]`
+    - List custom commands or search for a specific pattern.
+    - Aliases: `lcc`
+
+- **SearchCustomCommand**
+    - Usage: `SearchCustomCommand || scc [pattern]`
+    - Search for a specific custom command.
+    - Aliases: `scc`
+
+#### Conda Environment Management:
+
+- **CondaCreateEnv**
+    - Usage: `CondaCreateEnv || cce [envName] [pythonVersion]`
+    - Create a new Conda environment with an optional specific Python version.
+    - Aliases: `cce`
+
+- **CondaUpdateEnv**
+    - Usage: `CondaUpdateEnv || cue [envName]`
+    - Update all packages in a specified Conda environment or the base environment.
+    - Aliases: `cue`
+
+- **CondaRemoveEnv**
+    - Usage: `CondaRemoveEnv || cre [envName]`
+    - Delete a specified Conda environment.
+    - Aliases: `cre`
+
+- **CondaListShortcuts**
+    - Usage: `CondaListShortcuts || debloater [pattern]`
+    - List Conda shortcuts or search for a specific pattern.
+    - Aliases: `ccon`
+
+#### Network and System Utilities:
+
+- **ListConnectedIPs**
+    - Usage: `ListConnectedIPs || lci`
+    - List all connected IP addresses.
+    - Aliases: `lci`
+
+- **LaunchAdminPS**
+    - Usage: `LaunchAdminPS || psadmin`
+    - Open PowerShell as Administrator in the current directory.
+    - Aliases: `psadmin`
+
+- **LaunchDebloater**
+    - Usage: `LaunchDebloater || debloat`
+    - Launch a PowerShell debloater script.
+    - Aliases: `debloat`
+
+#### Profile and Environment Customization:
+
+- **EditProfileInCode**
+    - Usage: `EditProfileInCode || ep`
+    - Edit profile commands in VS Code.
+    - Aliases: `ep`
+
+- **ReloadThisProfile**
+    - Usage: `ReloadThisProfile || reload`
+    - Reload the profile.ps1 without restarting PowerShell.
+    - Aliases: `reload`
+
+- **ReStylePrompt**
+    - Usage: `ReStylePrompt || rsp [pattern]`
+    - Customize the PowerShell prompt. 
+    - Aliases: `rsp`
+
+#### General Aliases:
+
+- `conda-update`: Update the base Conda installation.
+- `aenv`: Activate a Conda environment.
+- `lenv`: List all Conda environments.
+- `..`, `...`, `....`: Move up directories.
+- `~`: Change to the home directory.
+- `ll`, `la`, `l`: List files in various formats.
+- `c`: Clear the terminal screen.
+- `grep`: Search with 'grep', with color highlighting.
+- `path`: Display the PATH environment variable.
+- `downs`: Change to the Downloads directory.
+- `docs`: Change to the Documents directory.
+- `ep`: Quick access to edit profile commands.
+- `lsa`: List all aliases available in the session.
+- `checkssh`: Check all available SSH keys.
+- `cls`: List Conda shortcuts.
+- `sv`, `gv`, `ni`, `ls`, `ps`, `kill`, `nano`, `touch`: Various standard PowerShell functions.
+
+---
+
+### Note:
+This help page provides information on custom PowerShell commands and their usage. It is crucial to understand each command's
+
+ functionality and arguments before usage to avoid unintended actions. Always check for the latest version of this documentation for the most accurate information.
+```

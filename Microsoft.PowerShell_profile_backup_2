@@ -1,0 +1,196 @@
+Import-Module PSColor
+
+
+# Customize the PowerShell prompt appearance.
+function prompt {
+    "$PWD> "
+}
+
+function ccon {
+    param (
+        [string]$pattern
+    )
+    $customCommandsPath = "C:\Users\David\Dropbox\Code\conda-commands.txt"
+    if ([string]::IsNullOrWhiteSpace($pattern)) {
+        Get-Content $customCommandsPath
+    } else {
+        Select-String -Path $customCommandsPath -Pattern $pattern
+    }
+}
+
+function cenv {
+    param (
+        [string]$envName,
+        [string]$pythonVersion
+    )
+    if ([string]::IsNullOrWhiteSpace($pythonVersion)) {
+        conda create -n $envName
+    } else {
+        conda create -n $envName python=$pythonVersion
+    }
+}
+
+function uenv {
+    param (
+        [string]$envName
+    )
+    if ([string]::IsNullOrWhiteSpace($envName)) {
+        conda update --all
+    } else {
+        conda update --all -n $envName
+    }
+}
+
+function cc {
+    param (
+        [string]$pattern
+    )
+    $customCommandsPath = "C:\Users\David\Dropbox\Code\CustomCommands.txt"
+    if ([string]::IsNullOrWhiteSpace($pattern)) {
+        Get-Content $customCommandsPath
+    } else {
+        Select-String -Path $customCommandsPath -Pattern $pattern
+    }
+}
+
+function ccc {
+    param (
+        [string]$pattern
+    )
+    $customCommandsPath = "C:\Users\David\Dropbox\Code\CustomCommands.txt"
+    (Get-Content $customCommandsPath -Raw) -match "$pattern`:\n(.*\n)?(?=\n[A-Z])"
+    $matches[0]
+}
+
+function Sniff-Names {
+    param (
+        [String]$firstParam = $null,
+		[String]$secondParam = $null
+    )
+	
+    [int]$depth = 0
+	[int]$depthParsed = 0
+	[String]$searchString = $null
+	$currentLocation = Get-Location
+    
+	# Check if $firstParam is $null
+	if (-not [String]::IsNullOrWhiteSpace($firstParam)) {
+		# Try to parse the first parameter as an integer for depth
+		if ([int]::TryParse($firstParam, [ref]$depthParsed)) {
+			$depth = $depthParsed
+			$searchString = $secondParam
+			
+		} else {
+			$searchString = $firstParam
+			if (-not ([String]::IsNullOrWhiteSpace($secondParam)) -And ([int]::TryParse($secondParam, [ref]$depthParsed))) {
+				$depth = $depthParsed
+			}
+		}
+	}
+
+	function sortItems {
+		param (
+			[Parameter(Mandatory)]
+			[ValidateSet("Directory", "File")]
+			[string]$itemType
+		)
+		
+		# Determine the type to filter
+		$typeFilter = switch ($ItemType) {
+			"Directory" { [System.IO.DirectoryInfo] }
+			"File" { [System.IO.FileInfo] }
+		}
+		
+		# Get items and store them in a variable
+		$Items = Get-ChildItem -Path $currentLocation -Recurse -Depth $depth | Where-Object { $_ -is $typeFilter }
+		
+		if (-not [string]::IsNullOrWhiteSpace($searchString)) {
+			$FilteredItems = $Items | Where-Object { $_ -is $typeFilter }
+		}
+		
+		$FilteredItems = $Items.Name
+		
+		if ($itemType -eq "Directory") { 
+			foreach ($item in $Items) {
+				Write-Host "`nFull name: $item"
+			}
+		}
+		
+		<# $itemsGrid = $Items.Name
+		$Items | Format-Wide -Column 3 #>
+		
+	}
+
+    Write-Host "`nDirectories:"
+    sortItems -ItemType Directory
+
+    Write-Host "`nFiles:"
+    #sortItems -ItemType File
+}
+
+function renv {
+    param (
+        [string]$envName
+    )
+    conda remove -n $envName --all
+}
+
+function myip {
+    ipconfig | Select-String -Pattern 'IPv4'
+}
+
+function Start-AdminPowershellInCurrentDirectory {
+    $currentLocation = Get-Location
+    Start-Process "C:\Program Files\PowerShell\7\pwsh.exe" -Verb RunAs -ArgumentList "-NoExit", "-Command Set-Location -LiteralPath '$currentLocation'"
+}
+
+function titusdebloat {
+    Start-Process PowerShell -ArgumentList "-Command `"iwr -useb https://christitus.com/win | iex`"" -Verb RunAs
+}
+
+function cd {
+    param([string]$path)
+    if (!(Test-Path $path)) {
+        $create = Read-Host "Directory '$path' does not exist. Do you want to create it? (y/N)"
+        if ($create -eq 'y') {
+            New-Item -ItemType Directory -Path $path | Out-Null
+            Set-Location $path
+        }
+    } else {
+        Set-Location $path
+    }
+}
+
+function prompt {
+    "$PWD> "
+}
+
+function Reload-Profile {
+    . $PROFILE
+}
+
+function Edit-Profile {
+    notepad++.exe "C:\Users\david\Dropbox\Code\CustomCommands.txt" $PROFILE
+	
+}
+
+Set-Alias psadmin Start-AdminPowershellInCurrentDirectory
+Set-Alias conda-update 'conda update -n base conda'
+Set-Alias aenv 'conda activate'
+Set-Alias lenv 'conda env list'
+Set-Alias ".." 'cd ..'
+Set-Alias "..." 'cd ..\..'
+Set-Alias "...." 'cd ..\..\..'
+Set-Alias "~" 'cd ~'
+Set-Alias ll 'Get-ChildItem -Force | Format-Table -AutoSize'
+Set-Alias la 'Get-ChildItem -Force -Name'
+Set-Alias l 'Get-ChildItem -Force -Name | Format-Wide -Column 1'
+Set-Alias c 'Clear-Host'
+# Set-Alias grep 'Select-String --color=auto' # PowerShell handles grep-like functionality through Select-String, color is default.
+Set-Alias path 'echo $Env:PATH -split ";"'
+Set-Alias downs 'cd $HOME\Downloads'
+Set-Alias docs 'cd C:\Users\$env:USERNAME\Documents'
+Set-Alias ep Edit-Profile
+Set-Alias lsa 'Get-Alias'
+Set-Alias rpr Reload-Profile
+Set-Alias sniff Sniff-Names
