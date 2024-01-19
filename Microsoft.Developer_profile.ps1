@@ -151,8 +151,8 @@ function ShowCommandList {
     } else {
         Select-String -Path $customCommandsPath -Pattern $pattern
     }
-    gitListShortcuts $pattern
-    # CondaListShortcuts $pattern
+    GitListShortcuts $pattern
+    CondaListShortcuts $pattern
 }
 
 function SearchCustomCommand {
@@ -223,7 +223,7 @@ function UpdateDevProfile {
     . 'C:\Users\david\Documents\PowerShell\update_dev_profile.ps1'
 }
 
-function gitListShortcuts {
+function GitListShortcuts {
     param (
         [string]$pattern
     )
@@ -353,6 +353,7 @@ Set-Alias psadmin   LaunchAdminPS # Open PowerShell as Administrator in Current 
 Set-Alias cdd       CreateDirectoryIfNotExists # Automatic Directory Creation with cd with Confirmation
 Set-Alias checkssh  'for key in ~/.ssh/id_*; do ssh-keygen -l -f "${key}"; done | uniq' # Check all available SSH keys
 # Git
+Set-Alias cgit      GitListShortcuts
 Set-Alias gs        gitStatus
 Set-Alias ga        gitAdd
 Set-Alias gaa       gitAddAll

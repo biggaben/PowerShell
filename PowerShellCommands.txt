@@ -14,26 +14,25 @@
     This script is for personal use. Redistribution or modification without explicit permission is prohibited.
 #>
 
-### Git Commands:
+### PowerShell Commands:
 
 Alias     Command
 -------   -------------------
-cgit[opt] gitListShortcuts
-g         git
-ga        git add
-gaa       git add --all
-gs        gitStatus
-ga        gitAdd
-gaa       gitAddAll
-gb        gitBranch
-gba       gitBranchAll
-gbd       gitBranchDelete
-gcom      gitCommit
-gcoma     gitCommitAll
-gcb       gitCheckoutBranch
-gcl       gitClone
-gco       gitCheckout
-gcl       gitConfigList
-gclean    gitClean
-gcmaster  gitCheckoutMaster
-gcherry   gitCherryPickAbort
+
+rpath     Record the current path
+repath    Go back to the previous path
+lpath     List all recorded paths and go back to the selected path
+cpath     Clear all recorded paths
+l         List files in a format suitable for the terminal
+ll        List all files in long format, including hidden files
+la        List all files, including hidden files, but exclude '.' and '..'
+lsa       List all aliases available in the session
+getv      Get a PS variable
+setv      Set a PS variable
+newi      Create a new item
+rsp       ustomizing the PowerShell prompt appearance
+rspreset  Resetting the PowerShell prompt appearance
+lci       List connected IPs
+psadmin   Open PowerShell as Administrator in Current Directory
+cdd       Automatic Directory Creation with cd with Confirmation
+checkssh  Check all available SSH keys

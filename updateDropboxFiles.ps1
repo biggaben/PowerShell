@@ -14,26 +14,22 @@
     This script is for personal use. Redistribution or modification without explicit permission is prohibited.
 #>
 
-### Git Commands:
+# Define the source and destination directories
+$sourceDir = "C:\Users\$env:USERNAME\Documents\PowerShell\"
+$destinationDir = "C:\Users\$env:USERNAME\Dropbox\Code\PowerShell\"
 
-Alias     Command
--------   -------------------
-cgit[opt] gitListShortcuts
-g         git
-ga        git add
-gaa       git add --all
-gs        gitStatus
-ga        gitAdd
-gaa       gitAddAll
-gb        gitBranch
-gba       gitBranchAll
-gbd       gitBranchDelete
-gcom      gitCommit
-gcoma     gitCommitAll
-gcb       gitCheckoutBranch
-gcl       gitClone
-gco       gitCheckout
-gcl       gitConfigList
-gclean    gitClean
-gcmaster  gitCheckoutMaster
-gcherry   gitCherryPickAbort
+# Get all files in the source directory and copy them to the destination directory
+Get-ChildItem -Path $sourceDir -File | ForEach-Object {
+    Copy-Item -Path $_.FullName -Destination $destinationDir -Force
+}
+
+# Define the source and destination directories
+$sourceDir = "C:\Users\$env:USERNAME\Documents\PowerShell\CommandLists\"
+$destinationDir = "C:\Users\$env:USERNAME\Dropbox\Code\PowerShell\"
+
+# Get all files in the source directory and copy them to the destination directory
+Get-ChildItem -Path $sourceDir -File | ForEach-Object {
+    Copy-Item -Path $_.FullName -Destination $destinationDir -Force
+}
+
+Write-Host "Local Profile Updated.`n"

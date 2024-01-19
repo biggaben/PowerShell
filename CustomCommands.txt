@@ -1,5 +1,21 @@
+<#
+    Program Name: PowerProfile
+    Author: David Holmertz
+    Created Date: January 16, 2024
+    Copyright (c) 2024 David Holmertz. All rights reserved.
+
+    Description:
+    PowerProfile is a custom PowerShell script designed to enhance the PowerShell experience. It includes functionalities like SniffSearch for advanced searching with custom tree depth, prompt restyling, GitHub shortcuts, and Path recording with go-back functionality. These features aim to streamline and optimize the usage of PowerShell for various common and advanced tasks.
+   
+    Contribution:
+    If you wish to contribute to this project or have any suggestions or bug reports, please feel free to open an issue or a pull request on GitHub at https://github.com/BigGaben. Contributions are welcomed and appreciated.
+
+    License:
+    This script is for personal use. Redistribution or modification without explicit permission is prohibited.
+#>
+
 ```
-### Custom PowerShell - DHz
+### PowerProfile 
 
 #### Usage: Command [Arguments] [Options...]
 
@@ -23,6 +39,28 @@ This help page provides information on custom PowerShell commands used in your p
     - Usage: `CreateDirectoryIfNotExists || cdd [path]`
     - Create a directory if it does not exist, with confirmation.
     - Aliases: `cdd`
+
+#### Path Management Utilities:
+
+- **rpath**
+    - Usage: `RecordPath || rpath`
+    - Description: Records the current directory path for future reference. This can be useful when you need to frequently switch between different directories. The path is stored in a file and can be accessed later using the `repath` or `lpath` commands.
+    - Aliases: `rpath`
+
+- **repath**
+    - Usage: `GoToLastPath || repath`
+    - Description: Changes the current directory to the last recorded path. This is useful when you want to quickly return to a previously visited directory. The command retrieves the last path stored by the `rpath` command and changes the current directory to it.
+    - Aliases: `repath`
+
+- **lpath**
+    - Usage: `ListRecordedPaths || lpath`
+    - Description: Lists all recorded paths and allows you to select one to change to. This is useful when you have multiple paths recorded and want to switch to a specific one. The command displays a list of all paths stored by the `rpath` command and prompts you to select one.
+    - Aliases: `lpath`
+
+- **cpath**
+    - Usage: `ClearRecordedPaths || cpath`
+    - Description: Clears all recorded paths. This is useful when you want to start fresh and remove all previously recorded paths. The command deletes all paths stored by the `rpath` command from the file.
+    - Aliases: `cpath`
 
 #### Custom Command Utilities:
 
@@ -72,6 +110,7 @@ This help page provides information on custom PowerShell commands used in your p
 
 #### General Aliases:
 
+- loadsc: Load a script
 - `..`, `...`, `....`: Move up directories.
 - `~`: Change to the home directory.
 - `ll`, `la`, `l`: List files in various formats.

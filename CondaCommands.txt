@@ -14,26 +14,14 @@
     This script is for personal use. Redistribution or modification without explicit permission is prohibited.
 #>
 
-### Git Commands:
+### Conda Commands:
 
 Alias     Command
 -------   -------------------
-cgit[opt] gitListShortcuts
-g         git
-ga        git add
-gaa       git add --all
-gs        gitStatus
-ga        gitAdd
-gaa       gitAddAll
-gb        gitBranch
-gba       gitBranchAll
-gbd       gitBranchDelete
-gcom      gitCommit
-gcoma     gitCommitAll
-gcb       gitCheckoutBranch
-gcl       gitClone
-gco       gitCheckout
-gcl       gitConfigList
-gclean    gitClean
-gcmaster  gitCheckoutMaster
-gcherry   gitCherryPickAbort
+ccon      CondaListShortcuts # List Conda shortcuts
+cce       CondaCreateEnv # Create a new Conda environment
+conda-update 'conda update -n base conda' # Update the base Conda installation
+aenv      'conda activate' # Activate a Conda environment
+lenv      'conda env list' # List all Conda environments
+cue       CondaUpdateEnv # Update all packages in a specified environment
+cre       CondaRemoveEnv # Delete a Conda environment
