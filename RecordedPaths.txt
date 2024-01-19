@@ -1,0 +1,2 @@
+Socket : C:\Users\david\Dropbox\KTH\Nätverk och Kommunikation\IK1203\Tasks\Task 1\Socket
+PowerShellProfile : C:\Users\david\Documents\PowerShell

@@ -155,7 +155,6 @@ function prompt {
     $prompt
 }
 
-
 function ResetPrompt {
     param(
         [string]$prompt = "$PWD> "
@@ -443,6 +442,7 @@ function gitCherryPickAbort {
 function gitCheckout {
     git checko
 }
+
 <#
 .SYNOPSIS
     Loads a PowerShell script.
@@ -819,6 +819,7 @@ function CheckSsh {
     $uniqueKeys = $sshKeys | Select-Object -Unique
     return $uniqueKeys
 }
+
 <#
 .SYNOPSIS
     Adds a path for the current session.
@@ -866,6 +867,7 @@ function AddPathPermanent {
         Write-Host "Path already exists."
     }
 }
+
 <#
 .SYNOPSIS
     Searches for a command in the PATH.
@@ -903,6 +905,7 @@ function SearchPath {
         }
     }
 }
+
 <#
 .SYNOPSIS
     Searches for commands based on a keyword and displays their names and sources.
@@ -945,6 +948,7 @@ function SearchCommand {
         Write-Host "No commands found."
     }
 }
+
 <#
 .SYNOPSIS
     Retrieves information about a PowerShell command.
