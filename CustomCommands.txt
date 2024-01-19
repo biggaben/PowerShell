@@ -43,24 +43,34 @@ This help page provides information on custom PowerShell commands used in your p
 #### Path Management Utilities:
 
 - **rpath**
-    - Usage: `RecordPath || rpath`
-    - Description: Records the current directory path for future reference. This can be useful when you need to frequently switch between different directories. The path is stored in a file and can be accessed later using the `repath` or `lpath` commands.
-    - Aliases: `rpath`
+    - Usage: `RecordPath|| rpath || rep [Path name(Optional)]`
+    - Description: Records the current directory path for future reference. Recordin can be named for future calling with `spath`. This can be useful when you need to frequently switch between different directories. The path is stored in a file and can be accessed later using the `repath` or `lpath` commands.
+    - Aliases: `rpath` `rep`
 
 - **repath**
-    - Usage: `GoToLastPath || repath`
+    - Usage: `GoToLastPath || repath || retp`
     - Description: Changes the current directory to the last recorded path. This is useful when you want to quickly return to a previously visited directory. The command retrieves the last path stored by the `rpath` command and changes the current directory to it.
-    - Aliases: `repath`
+    - Aliases: `repath` `retp`
+
+- **spath**
+    - Usage: `SelectRecordedPath || spath || sep [Path name(Optional)]`
+    - Description: Changes the current directory to the path, based on name or selection list.
+    - Aliases: `spath` `sep`
 
 - **lpath**
-    - Usage: `ListRecordedPaths || lpath`
-    - Description: Lists all recorded paths and allows you to select one to change to. This is useful when you have multiple paths recorded and want to switch to a specific one. The command displays a list of all paths stored by the `rpath` command and prompts you to select one.
-    - Aliases: `lpath`
+    - Usage: `ListRecordedPaths || lpath || lp`
+    - Description: Lists all recorded paths. The command displays a list of all paths stored by the `rpath` command.
+    - Aliases: `lpath` `lp`
 
-- **cpath**
-    - Usage: `ClearRecordedPaths || cpath`
+- **rmpath**
+    - Usage: `RemoveOneRecordedPath || rmpath || rmp`
+    - Description: Remove single recorded path. This is useful when you want to remove only one previously recorded path. The command deletes a path stored by the `rpath` command from the file.
+    - Aliases: `rmpath` `rmp`
+
+- **clrpath**
+    - Usage: `ClearRecordedPaths || clrpath || clrp`
     - Description: Clears all recorded paths. This is useful when you want to start fresh and remove all previously recorded paths. The command deletes all paths stored by the `rpath` command from the file.
-    - Aliases: `cpath`
+    - Aliases: `clrpath` `clrp`
 
 #### Custom Command Utilities:
 
@@ -123,6 +133,8 @@ This help page provides information on custom PowerShell commands used in your p
 - `lsa`: List all aliases available in the session.
 - `checkssh`: Check all available SSH keys.
 - `sv`, `gv`, `ni`, `ls`, `ps`, `kill`, `nano`, `touch`: Various standard PowerShell functions.
+- `path-session [path]`: Add a path for the current session
+- `path-permanent [path]`: Add a path permanently
 
 ---
 
