@@ -151,7 +151,7 @@ function prompt {
     }
     
     # Construct and return the prompt string
-    $prompt = "[{0}][Uptime: {1}][User: {2}@{3}] {4} {5}`n=> " -f $currentTimeString, $uptime, $currentuser, $publicIP, $isAdmin, $gitBranch
+    $prompt = "[{0}][Uptime: {1}][User: {2}@{3}] {4} {5} {6}`n=> " -f $currentTimeString, $uptime, $currentuser, $publicIP, $isAdmin, $gitBranch, $displayPath
     $prompt
 }
 
@@ -356,16 +356,16 @@ function CreateDirectoryIfNotExists {
 }
 
 function TwoDirUp {
-  cd ..\..\..
+    Set-Location ..\..\..
 }
 
 function ThreeDirUp {
-  cd ..\..\..\..
+    Set-Location ..\..\..\..
 }
 
 
 function ToRootDir {
-  cd ~\..\..\..
+    Set-Location ~\..\..\..
 }
 
 function EditPrompt {
@@ -489,8 +489,8 @@ function SearchCustomCommand {
     )
     $customCommandsPath = "C:\Users\$env:USERNAME\Documents\PowerShell\CustomCommands.txt"
     $content = Get-Content $customCommandsPath -Raw
-    $matches = $content | Select-String -Pattern $pattern -AllMatches
-    $matches.Matches.Value
+    $matching = $content | Select-String -Pattern $pattern -AllMatches
+    $matching.Matches.Value
 }
 
 <#
@@ -690,7 +690,7 @@ function RemoveOneRecordedPath {
                 Name = $name.Trim()
                 Path = $path.Trim()
             }
-            Write-Host "$($pathsWithNames.Count). $name:$path"
+            Write-Host "$($pathsWithNames.Count). $name : $path"
         } else {
             $path = $splitPath[0].Trim()
             $pathsWithNames += [PSCustomObject]@{
