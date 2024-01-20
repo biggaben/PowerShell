@@ -151,7 +151,7 @@ function prompt {
     }
     
     # Construct and return the prompt string
-    $prompt = "[{0}][Uptime: {1}][User: {2}@{3}] {4} {5} {6}`n=> " -f $currentTimeString, $uptime, $currentuser, $publicIP, $isAdmin, $gitBranch, $displayPath
+    $prompt = "[{0}][Uptime: {1}][User: {2}@{3}]{4}{5}{6}`n=> " -f $currentTimeString, $uptime, $currentuser, $publicIP, $isAdmin, $gitBranch, $displayPath
     $prompt
 }
 
@@ -1114,6 +1114,57 @@ function MeasureCommandExecution {
     # Display the execution time in milliseconds
     Write-Host "Execution Time: $($executionTime.TotalMilliseconds) ms"
 }
+
+<#
+.SYNOPSIS
+Sets up a timer that changes the prompt color to red after a specified number of hours.
+
+.DESCRIPTION
+The Set-PromptTimer function creates a timer object that, when elapsed, changes the prompt color to red and displays a message. The timer interval is specified in hours.
+
+.PARAMETER Hours
+Specifies the number of hours for the timer.
+
+.EXAMPLE
+Set-PromptTimer -Hours 1
+Starts a timer that changes the prompt color to red after 1 hour.
+
+.NOTES
+This function requires the System.Timers.Timer class.
+#>
+function Set-PromptTimer {
+    param (
+        [int]$Hours  # Number of hours for the timer
+    )
+
+    # Create a new timer object
+    $timer = New-Object System.Timers.Timer
+
+    # Set the interval of the timer in milliseconds
+    $timer.Interval = $Hours * 60 * 60 * 1000  # Convert hours to milliseconds
+
+    # Set the timer to not repeat automatically
+    $timer.AutoReset = $false
+
+    # Enable the timer
+    $timer.Enabled = $true
+
+    # Event handler for timer elapsed
+    $timer.Elapsed = {
+        # Change the prompt color to red
+        $host.UI.RawUI.backgroundColor = "Red"
+
+        # Display a message when the timer elapses
+        Write-Host "Timer elapsed! Prompt color changed to red."
+    }
+
+    # Start the timer
+    $timer.Start()
+}
+
+# Usage example: Set the timer to 2 hours
+Set-Alias sTimer    Set-PromptTimer
+
 
 # Custom
 Set-Alias ss	    SniffSearch # File search in folder
