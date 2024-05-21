@@ -35,6 +35,7 @@ Includes shortcuts for common tasks like updating Conda, activating environments
 
 ## Installation
 To install PowerTools, download the `Microsoft.PowerShell_profile.ps1` file and place it in your PowerShell profile directory. Ensure that you backup your existing PowerShell profile before proceeding.
+***!WARNING!***: This will replace the current configuration. 
 
 ## Usage
 To use a command, simply type the command or its alias in the PowerShell prompt, followed by any necessary arguments or options. For example:
